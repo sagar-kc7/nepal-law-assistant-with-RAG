@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+.env
+unsloth_compiled_cache/
+~/.cache/huggingface/
+data/nepal_legal_db/
+models/
+*.Zone.Identifier
