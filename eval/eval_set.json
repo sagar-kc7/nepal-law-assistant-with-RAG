@@ -18,5 +18,80 @@
     "question": "What script is used for Nepal's official language, and can provinces have their own official languages too?",
     "expected_articles": ["7"],
     "type": "multi_hop"
+  },
+  {
+    "question": "What is Nepal's national animal, national bird, and national flower?",
+    "expected_articles": ["9"],
+    "type": "direct_lookup"
+  },
+  {
+    "question": "What are the qualifications required to be appointed as a Justice of the Supreme Court?",
+    "expected_articles": ["129"],
+    "type": "direct_lookup"
+  },
+  {
+    "question": "What rights does a labourer have under the Constitution?",
+    "expected_articles": ["34"],
+    "type": "direct_lookup"
+  },
+  {
+    "question": "What free health services are citizens entitled to?",
+    "expected_articles": ["35"],
+    "type": "direct_lookup"
+  },
+  {
+    "question": "What does the Constitution guarantee under the Right to Housing?",
+    "expected_articles": ["37"],
+    "type": "direct_lookup"
+  },
+  {
+    "question": "Within how many hours must an arrested person be produced before an adjudicating authority?",
+    "expected_articles": ["20"],
+    "type": "direct_lookup"
+  },
+  {
+    "question": "Can news broadcasts or publications be censored by the government?",
+    "expected_articles": ["19"],
+    "type": "paraphrased"
+  },
+  {
+    "question": "Is workplace discrimination based on caste allowed under the Constitution?",
+    "expected_articles": ["24"],
+    "type": "paraphrased"
+  },
+  {
+    "question": "Does someone accused of a crime have to prove they are innocent?",
+    "expected_articles": ["20"],
+    "type": "paraphrased"
+  },
+  {
+    "question": "Can a person's Nepali citizenship be taken away from them?",
+    "expected_articles": ["10"],
+    "type": "paraphrased"
+  },
+  {
+    "question": "Who decides who becomes a judge on Nepal's High Courts?",
+    "expected_articles": ["140"],
+    "type": "paraphrased"
+  },
+  {
+    "question": "Are children allowed to work in mines or factories under Nepali law?",
+    "expected_articles": ["39"],
+    "type": "paraphrased"
+  },
+  {
+    "question": "How does the jurisdiction of the Supreme Court compare to the jurisdiction of a High Court?",
+    "expected_articles": ["133", "144"],
+    "type": "multi_hop"
+  },
+  {
+    "question": "How are Justices of the Supreme Court removed from office, and how does that compare to how Judges of a High Court are removed?",
+    "expected_articles": ["131", "142"],
+    "type": "multi_hop"
+  },
+  {
+    "question": "What rights are guaranteed to women, and what rights are guaranteed to children, under the Constitution's fundamental rights?",
+    "expected_articles": ["38", "39"],
+    "type": "multi_hop"
   }
 ]

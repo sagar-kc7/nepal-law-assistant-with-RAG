@@ -11,7 +11,19 @@ def get_retrieved_articles(question: str):
     response = requests.post(API_URL, json={"question": question})
     response.raise_for_status()
     data = response.json()
-    return [chunk["article"] for chunk in data["chunks"]]
+    route = data.get("route", "specific_lookup")
+
+    if route == "specific_lookup":
+        return [chunk["article"] for chunk in data["chunks"]]
+    elif route == "broad_summary":
+        # RAPTOR chunks list child_articles as a comma-separated string — flatten them
+        articles = []
+        for chunk in data["chunks"]:
+            child_articles = chunk.get("child_articles", "")
+            articles.extend(a.strip() for a in child_articles.split(",") if a.strip() and a.strip() != "?")
+        return articles
+    else:  # no_retrieval_needed
+        return []
 
 def compute_precision_recall(expected_ids, retrieved_ids):
     expected_set = set(expected_ids)
