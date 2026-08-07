@@ -1,0 +1,22 @@
+[
+  {
+    "question": "What happens to a law that conflicts with the Constitution?",
+    "expected_articles": ["1"],
+    "type": "direct_lookup"
+  },
+  {
+    "question": "Who holds sovereignty in Nepal?",
+    "expected_articles": ["2"],
+    "type": "direct_lookup"
+  },
+  {
+    "question": "Is Nepal a monarchy or a republic?",
+    "expected_articles": ["4"],
+    "type": "paraphrased"
+  },
+  {
+    "question": "What script is used for Nepal's official language, and can provinces have their own official languages too?",
+    "expected_articles": ["7"],
+    "type": "multi_hop"
+  }
+]
