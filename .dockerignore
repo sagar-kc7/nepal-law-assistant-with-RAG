@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+.env
+.git/
+.gitignore
+*.md
+data/nepal_legal_db/
+data/nepal_legal_db_v2/
