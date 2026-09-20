@@ -11,7 +11,7 @@ Every technique below was added, tested against a fixed evaluation set, and kept
 - Answers direct questions about specific Articles ("Who holds sovereignty in Nepal?")
 - Answers broad questions that span many Articles ("What does the Constitution say overall about fundamental rights?")
 - Routes each question automatically to the right retrieval strategy
-- Shows its sources for every answer. You can see exactly which Article(s) or topic cluster the answer came from
+- Shows its sources for every answer. You can see exactly which Articles or topic cluster the answer came from
 
 ## Architecture
 
