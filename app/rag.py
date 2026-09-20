@@ -25,15 +25,19 @@ def answer_legal_question(question: str, context: str = None, retriever=None) ->
             )
 
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=[
             {
                 "role": "system",
-                "content": "You are a Nepali legal assistant. Answer using ONLY the provided context. Cite article numbers where possible. Never add extra explanation.",
+                "content": (
+                    "You are a Nepali legal assistant. Answer using ONLY the provided context. "
+                    "Cite article numbers using this exact format: (Article N) — parentheses only, "
+                    "never other bracket styles. Never add extra explanation."
+                ),
             },
             {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {question}"},
         ],
         temperature=0.1,
-        max_tokens=250,  # slightly higher — RAPTOR summaries need more room to synthesize
+        max_tokens=600,  # slightly higher — RAPTOR summaries need more room to synthesize
     )
     return response.choices[0].message.content.strip()

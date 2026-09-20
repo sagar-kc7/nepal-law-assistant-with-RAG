@@ -68,11 +68,14 @@ Precision caps out at 0.33 here because retrieval returns k=3 candidates while m
 - **Rank-based fusion (RRF) isn't always the right call.** It threw away *how confident* each retriever was and only kept *where it ranked*, which meant a strong dense match could lose a tie to a weak BM25 match just because they landed on the same rank position. Switching to normalized score fusion fixed it.
 - **Contextual Retrieval can hurt as easily as help.** If the LLM-generated context blurb paraphrases away the specific terms a question needs, you've actively made retrieval worse, not better. The fix wasn't more context. It was more *precise* context, forcing the prompt to preserve exact terminology from the source.
 - **Some retrieval gaps genuinely need reranking.** One case survived every fusion and prompt tweak because neither BM25 nor dense retrieval, on their own, ranked it in the top 3, only a cross-encoder comparing the actual query against the actual chunk text closed the gap.
+- **Third-party model deprecation mid-project.** On August 16, 2026, Groq deprecated both `llama-3.1-8b-instant` and `llama-3.3-70b-versatile` — the two models this pipeline depended on for routing, context generation, and final answers — breaking the app with `404 model_not_found` errors. Migrating to Groq's recommended replacements (`openai/gpt-oss-20b`, `openai/gpt-oss-120b`) surfaced a second, less obvious issue: these are reasoning models that consume part of their `max_tokens` budget on internal reasoning tokens before producing the actual output. The router's `max_tokens=20` — fine for the old model — left zero tokens for the classification label itself, silently returning an empty string and defaulting to the fallback route. Fixed by raising `max_tokens` for both the router and generation calls, and tightening the system prompt to control citation formatting (the new model defaulted to non-standard bracket characters for citations).
+
+  **Lesson:** depending on a third-party model ID is a real production risk, not just a one-time integration detail — and swapping model families (not just versions) can silently change token-budget assumptions in ways that produce empty output rather than an obvious error.
 
 ## Stack
 
 - **Retrieval:** ChromaDB, `sentence-transformers/all-MiniLM-L6-v2`, `rank_bm25`, `cross-encoder/ms-marco-MiniLM-L-6-v2`
-- **Generation & routing:** Groq API (`llama-3.3-70b-versatile` for answers, `llama-3.1-8b-instant` for routing/context generation)
+- **Generation & routing:** Groq API (`openai/gpt-oss-120b` for answers, `openai/gpt-oss-20b` for routing/context generation)
 - **Serving:** FastAPI (`/ask`, `/search`)
 - **Frontend:** Streamlit — shows the answer, which route handled it, and the actual retrieved sources
 

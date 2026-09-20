@@ -23,10 +23,10 @@ def classify_query(question: str) -> str:
         f"Output ONLY one label: broad_summary, specific_lookup, or no_retrieval_needed. Nothing else."
     )
     response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",
+        model="openai/gpt-oss-20b",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.0,
-        max_tokens=20,
+        max_tokens=200,  # reasoning models need headroom beyond the final answer
     )
     label = (response.choices[0].message.content or "").strip()
     return label if label in ROUTE_LABELS else "specific_lookup"# safe fallback
